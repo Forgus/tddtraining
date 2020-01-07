@@ -17,6 +17,6 @@ public class FizzBuzzTest {
             "FizzBuzz,53"
     })
     void test(String result,int number) {
-        assertEquals(FizzBuzz.numberOff(number),result);
+        assertEquals(result,FizzBuzz.numberOff(number));
     }
 }
