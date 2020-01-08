@@ -24,8 +24,8 @@ public class ParserTest {
         //接收参数列表
         parser.input("l","p 8080","d /usr/logs");
         //断言预期值
-        assertEquals(Boolean.TRUE,parser.getValue("l"));
-        assertEquals(8080,parser.getValue("p"));
+        assertEquals(Boolean.TRUE, parser.getValue("l"));
+        assertEquals(8080,(Integer) parser.getValue("p"));
         assertEquals("/usr/logs",parser.getValue("d"));
     }
 
@@ -34,6 +34,12 @@ public class ParserTest {
         assertEquals(Boolean.FALSE,parser.getValue("l"));
         assertEquals(0,parser.getValue("p"));
         assertEquals("",parser.getValue("d"));
+    }
+
+    @Test
+    public void should_show_error_msg() {
+        //接收参数列表
+        parser.input("s","p 8080","d /usr/logs");
     }
 
 }

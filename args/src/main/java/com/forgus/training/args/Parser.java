@@ -31,14 +31,25 @@ public class Parser {
         for (String argStr : argStrs) {
             String[] split = argStr.split(" ");
             String flag = split[0];
+            Schema schema = flagSchemaMap.get(flag);
+            if(schema == null) {
+                System.out.println("flag:"+ flag + " not support!");
+                break;
+            }
             if("l".equals(flag)) {
                 flagValueMap.put(flag,Boolean.TRUE);
             }else {
                 String value = split[1];
-                Schema schema = flagSchemaMap.get(flag);
-//                flagValueMap.put(flag,);
+                flagValueMap.put(flag,convert(value,schema.getType()));
             }
         }
+    }
+
+    private Object convert(String value, String type) {
+        if("integer".equals(type)) {
+            return Integer.valueOf(value);
+        }
+        return value;
     }
 
     public Object getValue(String flag) {

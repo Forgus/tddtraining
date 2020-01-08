@@ -7,26 +7,23 @@ package com.forgus.training.args;
 public class Schema {
 
     private String flag;
-    private Object type;
+    private String type;
     private Object value;
 
     public Schema(String schemaStr) {
         String[] split = schemaStr.split(":");
         this.flag = split[0];
-        String type = split[1];
+        this.type = split[1];
         if("boolean".equals(type)) {
-            this.type = Boolean.class;
             this.value = Boolean.FALSE;
         }else if ("integer".equals(type)) {
-            this.type = Integer.class;
             this.value = 0;
         }else if("string".equals(type)) {
-            this.type = String.class;
             this.value = "";
         }
     }
 
-    public Object getType() {
+    public String getType() {
         return type;
     }
 
